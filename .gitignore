@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Node modules (if used later)
+node_modules/
+
+# JetBrains IDEs
+.idea/
+
+# VS Code
+.vscode/
