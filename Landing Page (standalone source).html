@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Punto Fast — Tu punto de venta en el bolsillo</title>
+<template id="__bundler_thumbnail" data-bg-color="#FAF9F4">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FAF9F4"/>
+    <g transform="translate(450 220)">
+      <rect width="300" height="300" rx="72" fill="#0A3D2E"/>
+      <text x="150" y="210" font-family="Georgia, serif" font-size="200" font-weight="700" text-anchor="middle" fill="#FAF9F4">P</text>
+      <circle cx="240" cy="240" r="22" fill="#10B981"/>
+    </g>
+    <text x="600" y="600" font-family="Helvetica, sans-serif" font-size="44" font-weight="600" text-anchor="middle" fill="#0A3D2E" letter-spacing="-1">Punto Fast</text>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* palette */
+    --bg: #FAF9F4;
+    --bg-2: #F5F4EE;
+    --bg-3: #EAF3F0;
+    --ink: #102F27;
+    --ink-2: #235646;
+    --muted: #6F6E66;
+    --muted-2: #8E8D84;
+    --line: #E8E7E0;
+    --primary: #2F6B56;
+    --primary-deep: #0A3D2E;
+    --primary-700: #1A4338;
+    --primary-50: #EAF3F0;
+    --leaf: #10B981;
+    --leaf-50: #ECFDF5;
+    --leaf-100: #D1FAE5;
+    --warn: #F59E0B;
+    --warn-50: #FFFBEB;
+    --info: #0EA5E9;
+    --info-50: #F0F9FF;
+
+    --r-sm: 10px;
+    --r-md: 18px;
+    --r-lg: 28px;
+    --r-xl: 36px;
+
+    --shadow-sm: 0 1px 2px rgba(16,47,39,.04), 0 2px 8px rgba(16,47,39,.04);
+    --shadow-md: 0 4px 16px rgba(16,47,39,.06), 0 24px 48px -16px rgba(16,47,39,.12);
+    --shadow-lg: 0 30px 60px -20px rgba(10,61,46,.30), 0 12px 24px -12px rgba(10,61,46,.18);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Geist", system-ui, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-feature-settings:"ss01","cv11";
+    line-height:1.5;
+  }
+  .wrap{max-width:1240px; margin:0 auto; padding: 0 28px}
+  .mono{font-family:"JetBrains Mono", ui-monospace, monospace; letter-spacing:.02em}
+  .serif{font-family:"Instrument Serif", serif; font-style:italic; font-weight:400; letter-spacing:-.01em}
+
+  /* nav */
+  nav.top{
+    position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.4) blur(14px);
+    background:color-mix(in oklab, var(--bg) 82%, transparent);
+    border-bottom:1px solid color-mix(in oklab, var(--line) 70%, transparent);
+  }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:24px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:-.01em; color:var(--ink); text-decoration:none; font-size:18px}
+  .brand .dot{
+    width:30px; height:30px; border-radius:9px; background:var(--primary-deep);
+    display:inline-flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:16px;
+    box-shadow: inset 0 -6px 12px rgba(255,255,255,.08), 0 6px 14px -6px rgba(10,61,46,.4);
+  }
+  .brand .dot::after{content:""; width:6px; height:6px; border-radius:50%; background:var(--leaf); margin-left:1px; box-shadow:0 0 0 2px rgba(16,185,129,.18)}
+  .nav-links{display:flex; gap:32px; font-size:14.5px; color:var(--muted)}
+  .nav-links a{color:inherit; text-decoration:none}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex; gap:10px; align-items:center}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:12px 18px; border-radius:999px;
+    font-weight:600; font-size:14.5px; line-height:1;
+    text-decoration:none; cursor:pointer; border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, box-shadow .2s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--primary-deep); color:#fff; box-shadow:var(--shadow-md)}
+  .btn-primary:hover{transform:translateY(-1px); background:#0E4A38}
+  .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+  .btn-ghost:hover{background:#fff; border-color:#dcdbd2}
+  .btn-leaf{background:var(--leaf); color:#053524}
+  .btn-leaf:hover{background:#0bcf90}
+  .btn .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(2px)}
+  .btn-lg{padding:16px 24px; font-size:15px}
+
+  /* HERO */
+  section.hero{position:relative; overflow:hidden; padding: 56px 0 120px}
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr .95fr; gap:64px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:"JetBrains Mono", monospace; font-size:11.5px; letter-spacing:.14em;
+    color:var(--ink-2); text-transform:uppercase;
+    padding:6px 12px; background:var(--bg-3); border:1px solid #d5e7e0; border-radius:999px;
+  }
+  .eyebrow .pulse{width:7px; height:7px; border-radius:50%; background:var(--leaf); box-shadow:0 0 0 3px rgba(16,185,129,.18)}
+
+  h1.display{
+    font-size: clamp(44px, 5.6vw, 80px);
+    line-height: 1.02;
+    letter-spacing:-.035em;
+    font-weight:500;
+    margin: 28px 0 28px;
+    color:var(--primary-deep);
+    text-wrap:balance;
+    max-width: 620px;
+  }
+  h1.display .serif{color:var(--primary); font-weight:400; font-size: 1.02em}
+  .lede{font-size:18px; line-height:1.6; color:var(--muted); max-width:480px; text-wrap:pretty}
+
+  .hero-cta{display:flex; gap:12px; margin-top:30px; flex-wrap:wrap}
+  .hero-meta{display:flex; gap:28px; margin-top:36px; flex-wrap:wrap; align-items:center}
+  .hero-meta .item{display:flex; flex-direction:column; gap:2px}
+  .hero-meta .k{font-size:24px; font-weight:700; color:var(--ink); letter-spacing:-.02em; font-feature-settings:"tnum"}
+  .hero-meta .v{font-size:12.5px; color:var(--muted); font-family:"JetBrains Mono",monospace; letter-spacing:.06em; text-transform:uppercase}
+  .hero-meta .sep{width:1px; height:32px; background:var(--line)}
+
+  /* hero phone */
+  .phone-stage{position:relative; height:680px; display:flex; align-items:center; justify-content:center}
+  .phone-stage::before{
+    content:""; position:absolute; inset:auto -10% -10% -10%; top:5%;
+    background:
+      radial-gradient(45% 40% at 50% 60%, rgba(47,107,86,.22), transparent 70%),
+      radial-gradient(60% 60% at 70% 20%, rgba(16,185,129,.16), transparent 70%);
+    z-index:0;
+  }
+  .phone{
+    position:relative; z-index:2;
+    width:320px; aspect-ratio: 320/680;
+    border-radius: 46px;
+    background:#0E1A14;
+    padding:10px;
+    box-shadow:
+      0 50px 100px -30px rgba(10,61,46,.45),
+      0 30px 60px -25px rgba(10,61,46,.35),
+      inset 0 0 0 1.5px rgba(255,255,255,.06);
+    transform: rotate(-3deg);
+  }
+  .phone .screen{
+    border-radius:38px; overflow:hidden; height:100%; background:var(--bg);
+    position:relative;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+  }
+  .phone .screen img{width:100%; height:100%; object-fit:cover; display:block}
+  .phone .notch{
+    position:absolute; top:6px; left:50%; transform:translateX(-50%);
+    width:96px; height:22px; background:#0E1A14; border-radius:0 0 14px 14px; z-index:3;
+  }
+
+  /* floating chips around phone */
+  .chip{
+    position:absolute; z-index:3;
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:12px 14px; display:flex; align-items:center; gap:12px;
+    box-shadow: var(--shadow-md);
+    font-size:13.5px;
+  }
+  .chip .ico{
+    width:34px; height:34px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
+    background:var(--leaf-50); color:var(--leaf); flex:none;
+  }
+  .chip .ico.warn{background:var(--warn-50); color:#B45309}
+  .chip .ico.info{background:var(--info-50); color:#0369A1}
+  .chip strong{display:block; color:var(--ink); font-weight:600; font-size:13.5px; line-height:1.15}
+  .chip span{color:var(--muted); font-size:12px}
+  .chip-1{top:8%; left:-32px; transform:rotate(-4deg)}
+  .chip-2{top:46%; right:-40px; transform:rotate(3deg)}
+  .chip-3{bottom:8%; left:-24px; transform:rotate(2deg)}
+
+  /* logo strip */
+  .strip{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:color-mix(in oklab, var(--bg) 60%, #fff);
+  }
+  .strip-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:40px;
+    padding:22px 0; color:var(--muted); font-size:12.5px; flex-wrap:wrap;
+  }
+  .strip-inner b{color:var(--ink-2); font-weight:600}
+  .strip-pills{display:flex; gap:10px; flex-wrap:wrap}
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 14px; border-radius:999px; background:#fff; border:1px solid var(--line);
+    font-family:"JetBrains Mono", monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2);
+  }
+  .pill .d{width:6px; height:6px; border-radius:50%; background:var(--leaf)}
+
+  /* section header */
+  .sec-head{display:flex; flex-direction:column; gap:14px; max-width:720px; margin-bottom:48px}
+  .sec-tag{font-family:"JetBrains Mono",monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--primary)}
+  h2.sec-title{
+    font-size: clamp(34px, 3.8vw, 54px);
+    line-height: 1.05; letter-spacing:-.03em; color:var(--primary-deep);
+    margin:0; font-weight:500; text-wrap:balance; max-width: 14ch;
+  }
+  h2.sec-title.wide{max-width:18ch}
+  h2.sec-title .serif{color:var(--primary); font-weight:400}
+  .sec-sub{font-size:17px; color:var(--muted); max-width:520px; text-wrap:pretty; line-height:1.6}
+
+  section{padding: 140px 0}
+  section.tight{padding: 112px 0}
+  .sec-head{margin-bottom:72px}
+
+  /* feature grid */
+  .feat-grid{display:grid; grid-template-columns:repeat(6, 1fr); gap:20px}
+  .feat{
+    background:#fff; border:1px solid var(--line); border-radius:var(--r-md);
+    padding:36px 32px; display:flex; flex-direction:column; gap:18px;
+    grid-column: span 2;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .feat.wide{grid-column: span 3}
+  .feat:hover{transform: translateY(-3px); box-shadow:var(--shadow-md); border-color:#d5e7e0}
+  .feat .num{
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--primary); opacity:.7;
+  }
+  .feat .ico-lg{
+    width:48px; height:48px; border-radius:14px; background:var(--primary-50); color:var(--primary);
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .feat h3{margin:0; font-size:22px; font-weight:500; color:var(--primary-deep); letter-spacing:-.02em; line-height:1.15; max-width:14ch}
+  .feat .intro{margin:0; font-size:14.5px; color:var(--muted); line-height:1.6}
+  .feat ul.bullets{list-style:none; padding:0; margin:14px 0 0; display:flex; flex-direction:column; gap:12px; border-top:1px dashed var(--line); padding-top:18px}
+  .feat ul.bullets li{display:flex; gap:12px; align-items:flex-start; font-size:13.5px; color:var(--ink-2); line-height:1.5}
+  .feat ul.bullets b{color:var(--ink); font-weight:600}
+  .feat ul.bullets .dot{width:6px; height:6px; border-radius:50%; background:var(--leaf); flex:none; margin-top:8px; box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+
+  /* split sections */
+  .split{display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:center}
+  .split.rev .copy{order:2}
+  .split .copy h3{font-size: clamp(28px, 3vw, 40px); letter-spacing:-.02em; color:var(--primary-deep); margin:18px 0 18px; line-height:1.1; font-weight:500; max-width:14ch}
+  .split .copy h3 .serif{color:var(--primary); font-weight:400}
+  .split .copy p.body{font-size:16.5px; color:var(--muted); line-height:1.6; max-width:460px}
+
+  .checklist{display:flex; flex-direction:column; gap:10px; margin-top:22px}
+  .checklist li{list-style:none; display:flex; gap:12px; align-items:flex-start; font-size:14.5px; color:var(--ink-2)}
+  .checklist .ck{
+    width:22px; height:22px; border-radius:50%; background:var(--leaf-100); color:var(--primary-deep);
+    flex:none; display:inline-flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .checklist b{color:var(--ink); font-weight:600}
+
+  /* phone in section */
+  .phone-mini{
+    width:280px; aspect-ratio:280/600; border-radius:40px;
+    background:#0E1A14; padding:9px;
+    box-shadow:var(--shadow-lg);
+    position:relative;
+  }
+  .phone-mini .notch{position:absolute; top:5px; left:50%; transform:translateX(-50%); width:84px; height:20px; background:#0E1A14; border-radius:0 0 12px 12px; z-index:3}
+  .phone-mini .screen{border-radius:32px; overflow:hidden; height:100%; background:var(--bg)}
+  .phone-mini .screen img{width:100%; height:100%; object-fit:cover; display:block}
+
+  .phones-pair{position:relative; height:620px; display:flex; align-items:center; justify-content:center}
+  .phones-pair .phone-mini{position:absolute}
+  .phones-pair .pa{transform:translateX(-90px) rotate(-5deg); z-index:1}
+  .phones-pair .pb{transform:translateX(90px) rotate(5deg); z-index:2; box-shadow: 0 40px 90px -30px rgba(10,61,46,.5)}
+
+  /* payments block */
+  .payments-wrap{
+    background:linear-gradient(180deg, var(--primary-deep), #062b20);
+    color:#EAF3F0; border-radius:36px; padding:96px 80px; position:relative; overflow:hidden;
+  }
+  .payments-wrap::before{
+    content:""; position:absolute; right:-120px; top:-120px; width:420px; height:420px;
+    border-radius:50%; background: radial-gradient(circle, rgba(16,185,129,.25), transparent 70%);
+  }
+  .payments-wrap::after{
+    content:""; position:absolute; left:-160px; bottom:-160px; width:520px; height:520px;
+    border-radius:50%; background: radial-gradient(circle, rgba(125,183,163,.18), transparent 70%);
+  }
+  .pay-grid{display:grid; grid-template-columns: 1fr 1.05fr; gap:60px; align-items:center; position:relative; z-index:1}
+  .payments-wrap h2.sec-title{color:#fff}
+  .payments-wrap h2.sec-title .serif{color:#A9CFC2}
+  .payments-wrap .sec-tag{color:#A9CFC2}
+  .payments-wrap .sec-sub{color:#A9CFC2}
+
+  .pay-methods{display:flex; flex-direction:column; gap:14px}
+  .method{
+    display:flex; align-items:center; gap:18px;
+    padding:20px 22px; border-radius:18px;
+    background:rgba(255,255,255,.04); border:1px solid rgba(234,243,240,.12);
+    transition:background .2s;
+  }
+  .method:hover{background:rgba(255,255,255,.08)}
+  .method.featured{background:rgba(16,185,129,.10); border-color:rgba(16,185,129,.35)}
+  .method .ico{
+    width:54px; height:54px; border-radius:14px; flex:none;
+    background:rgba(255,255,255,.08); color:#A9CFC2;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .method.featured .ico{background:rgba(16,185,129,.22); color:#6EE7B7}
+  .method strong{display:block; color:#fff; font-size:17px; font-weight:600; letter-spacing:-.01em}
+  .method span{display:block; color:#A9CFC2; font-size:13.5px; margin-top:2px}
+  .method .badge{
+    margin-left:auto; padding:6px 11px; border-radius:999px;
+    font-size:11px; font-family:"JetBrains Mono",monospace; letter-spacing:.08em; text-transform:uppercase;
+    background:rgba(16,185,129,.18); color:#86EFAC;
+  }
+
+  .pay-phone{
+    position:relative; height:560px; display:flex; align-items:center; justify-content:center;
+  }
+  .pay-phone .phone-mini{transform:rotate(3deg)}
+  .pay-phone .phone-mini .screen{background:#FAF9F4}
+
+  /* inventory section grid */
+  .inv-grid{display:grid; grid-template-columns: 1.05fr 1fr 1fr; gap:24px; align-items:stretch}
+  .inv-copy{
+    background:#fff; border:1px solid var(--line); border-radius:24px; padding:36px 32px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .inv-card{
+    background:#fff; border:1px solid var(--line); border-radius:24px; padding:24px; overflow:hidden;
+    display:flex; flex-direction:column; gap:18px; position:relative;
+  }
+  .inv-card .label{
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary);
+  }
+  .inv-card h4{margin:0; font-size:19px; color:var(--ink); letter-spacing:-.01em; font-weight:600}
+  .inv-card p{margin:0; font-size:14px; color:var(--muted); line-height:1.55}
+  .inv-card .shot{
+    margin-top:auto; border-radius:18px; overflow:hidden;
+    background:#0E1A14; padding:6px; box-shadow:var(--shadow-md);
+    aspect-ratio:9/16; max-height:340px; align-self:center; width:80%;
+  }
+  .inv-card .shot img{width:100%; height:100%; object-fit:cover; display:block; border-radius:14px}
+
+  /* multi business */
+  .multi-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:center}
+  .branch-stack{position:relative; height:560px}
+  .branch-card{
+    position:absolute; background:#fff; border:1px solid var(--line); border-radius:20px;
+    padding:18px 20px; display:flex; align-items:center; gap:16px;
+    box-shadow:var(--shadow-md); width:340px;
+  }
+  .branch-card .b-ico{
+    width:46px; height:46px; border-radius:12px; flex:none;
+    background:var(--primary-deep); color:#fff;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .branch-card.alt .b-ico{background:var(--leaf-50); color:var(--primary)}
+  .branch-card strong{display:block; font-size:16px; color:var(--ink); font-weight:600}
+  .branch-card span{display:block; color:var(--muted); font-size:13px; margin-top:2px}
+  .branch-card .tag{
+    margin-left:auto; padding:5px 10px; border-radius:999px;
+    font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .branch-card .tag.active{background:#FDE68A; color:#78350F}
+  .branch-card .tag.idle{background:var(--leaf-50); color:var(--primary)}
+
+  .bc-1{top:30px; left:0; transform:rotate(-3deg)}
+  .bc-2{top:170px; left:60px; z-index:2; transform:rotate(2deg)}
+  .bc-3{top:310px; left:20px; transform:rotate(-1deg)}
+  .bc-4{top:430px; left:80px; transform:rotate(3deg); width:300px}
+
+  /* lots / movements */
+  .lot-wrap{
+    background:#fff; border:1px solid var(--line); border-radius:28px;
+    display:grid; grid-template-columns: 1fr 1.05fr; overflow:hidden;
+  }
+  .lot-copy{padding:64px 56px}
+  .lot-visual{background:var(--bg-2); padding:48px; display:flex; align-items:center; justify-content:center; position:relative; min-height:520px; border-left:1px solid var(--line)}
+  .lot-visual .phone-mini{transform:rotate(-2deg)}
+
+  .timeline{
+    position:absolute; right:32px; top:48px; bottom:48px;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .ev{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:12px 14px; box-shadow:var(--shadow-sm); width:220px;
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .ev .dt{font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.06em; color:var(--muted); text-transform:uppercase}
+  .ev strong{display:block; font-size:13px; color:var(--ink); font-weight:600; margin-top:2px}
+  .ev .delta{font-family:"JetBrains Mono",monospace; font-size:11px; padding:3px 6px; border-radius:6px; flex:none}
+  .ev .delta.up{background:var(--leaf-50); color:#047857}
+  .ev .delta.dn{background:#fee2e2; color:#b91c1c}
+
+  /* big quote / cta */
+  .final-cta{
+    text-align:center; padding: 140px 28px 160px;
+    background: radial-gradient(80% 60% at 50% 0%, rgba(16,185,129,.12), transparent 70%);
+  }
+  .final-cta h2{
+    font-size:clamp(40px, 5.2vw, 76px); letter-spacing:-.035em; color:var(--primary-deep);
+    line-height:1.04; margin:0 0 28px; font-weight:500; text-wrap:balance; max-width:14ch; margin-left:auto; margin-right:auto;
+  }
+  .final-cta h2 .serif{color:var(--primary); font-weight:400}
+  .final-cta p{font-size:18px; color:var(--muted); max-width:580px; margin:0 auto 36px}
+  .store-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .store{
+    display:inline-flex; align-items:center; gap:12px;
+    padding:14px 20px; background:var(--primary-deep); color:#fff; border-radius:14px; text-decoration:none;
+    transition: transform .15s;
+  }
+  .store:hover{transform:translateY(-2px)}
+  .store small{display:block; font-size:10.5px; opacity:.7; letter-spacing:.1em; text-transform:uppercase; font-family:"JetBrains Mono",monospace}
+  .store strong{display:block; font-size:16px; font-weight:600; margin-top:1px}
+
+  /* faq */
+  .faq-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px}
+  .faq{
+    background:#fff; border:1px solid var(--line); border-radius:18px;
+    padding:24px 26px;
+  }
+  .faq summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-size:16px; color:var(--ink); font-weight:600; letter-spacing:-.01em;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+"; font-family:"JetBrains Mono",monospace; color:var(--primary); font-size:20px; font-weight:400; transition: transform .2s}
+  .faq[open] summary::after{transform: rotate(45deg)}
+  .faq p{margin:14px 0 0; color:var(--muted); font-size:14.5px; line-height:1.55}
+
+  /* footer */
+  footer{border-top:1px solid var(--line); padding:48px 0 36px; margin-top:48px; background:var(--bg-2)}
+  .foot{display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:36px; align-items:start}
+  .foot p{color:var(--muted); font-size:14px; margin:14px 0 0; max-width:340px}
+  .foot h5{font-size:11.5px; text-transform:uppercase; letter-spacing:.12em; color:var(--ink); margin:0 0 16px; font-family:"JetBrains Mono",monospace; font-weight:500}
+  .foot ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px}
+  .foot a{color:var(--muted); text-decoration:none; font-size:14px}
+  .foot a:hover{color:var(--ink)}
+  .foot-bottom{display:flex; justify-content:space-between; align-items:center; margin-top:40px; padding-top:24px; border-top:1px solid var(--line); color:var(--muted-2); font-size:12.5px; font-family:"JetBrains Mono",monospace; letter-spacing:.06em}
+
+  /* responsive */
+  @media (max-width: 1024px){
+    .hero-grid, .split, .pay-grid, .multi-grid, .lot-wrap{grid-template-columns:1fr; gap:40px}
+    .feat-grid{grid-template-columns:repeat(2, 1fr)}
+    .feat, .feat.wide{grid-column: span 1}
+    .inv-grid{grid-template-columns:1fr 1fr; gap:18px}
+    .inv-copy{grid-column:1/-1}
+    .lot-visual{border-left:none; border-top:1px solid var(--line); min-height:480px}
+    .timeline{display:none}
+    .phone-stage{height:560px}
+    .phones-pair{height:540px}
+    .branch-stack{height:auto; display:flex; flex-direction:column; gap:14px}
+    .branch-card{position:relative; transform:none; top:auto; left:auto}
+    .bc-1, .bc-2, .bc-3, .bc-4{transform:none}
+    .lot-copy{padding:48px 32px}
+    .payments-wrap{padding:56px 32px}
+    .foot{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width: 640px){
+    .feat-grid, .inv-grid, .faq-grid{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .wrap{padding:0 20px}
+    .chip-1, .chip-2, .chip-3{display:none}
+    .phone{transform:rotate(-2deg); width:280px}
+    .hero-meta .sep{display:none}
+    .foot-bottom{flex-direction:column; gap:10px; text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#">
+      <span class="dot">P</span>
+      Punto Fast
+    </a>
+    <div class="nav-links">
+      <a href="#features">Módulos</a>
+      <a href="#pagos">Pagos</a>
+      <a href="#inventario">Inventario</a>
+      <a href="#sucursales">Sucursales</a>
+      <a href="#seguridad">Seguridad</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#">Iniciar sesión</a>
+      <a class="btn btn-primary" href="#download">Descargar
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="pulse"></span>Punto de venta · Inventario · Pagos</span>
+      <h1 class="display">
+        Tu punto de venta,<br/>
+        <span class="serif">tan rápido</span> como tu negocio.
+      </h1>
+      <p class="lede">
+        Punto Fast es la terminal móvil para vender, cobrar y controlar tu inventario desde un solo lugar. Sin computadora, sin papeleo, sin curva de aprendizaje.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#download">
+          Descargar gratis
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#demo">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          Ver demo de 90s
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <div class="item">
+          <span class="k">&lt; 30s</span>
+          <span class="v">por venta</span>
+        </div>
+        <div class="sep"></div>
+        <div class="item">
+          <span class="k">3 métodos</span>
+          <span class="v">de cobro</span>
+        </div>
+        <div class="sep"></div>
+        <div class="item">
+          <span class="k">∞ sucursales</span>
+          <span class="v">una cuenta</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-stage">
+      <div class="chip chip-1">
+        <span class="ico">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+        </span>
+        <div>
+          <strong>+24% vs ayer</strong>
+          <span>Ventas del día</span>
+        </div>
+      </div>
+
+      <div class="chip chip-2">
+        <span class="ico info">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <div>
+          <strong>Escanear QR / barras</strong>
+          <span>Cobra en segundos</span>
+        </div>
+      </div>
+
+      <div class="chip chip-3">
+        <span class="ico warn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        </span>
+        <div>
+          <strong>Stock bajo</strong>
+          <span>3 productos por reponer</span>
+        </div>
+      </div>
+
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <img src="images/dashboard.png" alt="Pantalla de inicio de Punto Fast" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="wrap strip-inner">
+    <span>Construido para <b>tiendas, kioscos, cafés, farmacias y comercios móviles</b> en México.</span>
+    <div class="strip-pills">
+      <span class="pill"><span class="d"></span>Hecho para México</span>
+      <span class="pill">iOS · Android</span>
+      <span class="pill">Offline ready</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">01 — Módulos</span>
+      <h2 class="sec-title wide">Cinco módulos. <span class="serif">Una sola app.</span></h2>
+      <p class="sec-sub">Todo lo que tu caja necesita, sin lo que no. Diseñado alrededor del flujo real de un mostrador.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat wide">
+        <span class="num">01</span>
+        <span class="ico-lg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        </span>
+        <h3>Control total en tiempo real</h3>
+        <p class="intro">Deja de adivinar y decide con datos al instante. Tu negocio entero, en un solo panel.</p>
+        <ul class="bullets">
+          <li><span class="dot"></span><span><b>Visión 360°</b> — ventas del día y del mes, efectivo en caja y estado del stock.</span></li>
+          <li><span class="dot"></span><span><b>Alertas proactivas</b> — notificaciones cuando el inventario baja o hay movimientos inusuales.</span></li>
+          <li><span class="dot"></span><span><b>Historial inmediato</b> — abre las últimas transacciones con un clic.</span></li>
+        </ul>
+      </div>
+
+      <div class="feat wide">
+        <span class="num">02</span>
+        <span class="ico-lg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </span>
+        <h3>Inventario ágil, sin errores</h3>
+        <p class="intro">Olvídate de las cuentas manuales y los productos perdidos. Tu catálogo, siempre al día.</p>
+        <ul class="bullets">
+          <li><span class="dot"></span><span><b>Catálogo inteligente</b> — filtra por categoría, SKU, precio o código de barras.</span></li>
+          <li><span class="dot"></span><span><b>Escaneo rápido</b> — escáneres físicos para empezar transacciones sin teclear.</span></li>
+          <li><span class="dot"></span><span><b>Sincronización multisucursal</b> — el inventario se actualiza en todas tus tiendas.</span></li>
+        </ul>
+      </div>
+
+      <div class="feat">
+        <span class="num">03</span>
+        <span class="ico-lg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>
+        </span>
+        <h3>Cobro ultra rápido</h3>
+        <p class="intro">Cierra más ventas con el método que tu cliente prefiera.</p>
+        <ul class="bullets">
+          <li><span class="dot"></span><span><b>Cobro híbrido</b> — efectivo, transferencia y tarjeta en una sola transacción.</span></li>
+          <li><span class="dot"></span><span><b>Mercado Pago nativo</b> — conecta tu cuenta y cobra con Point Smart 2.</span></li>
+          <li><span class="dot"></span><span><b>Flujo simplificado</b> — del ítem rápido al ticket con varios productos.</span></li>
+        </ul>
+      </div>
+
+      <div class="feat">
+        <span class="num">04</span>
+        <span class="ico-lg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <h3>Expansión sin límites</h3>
+        <p class="intro">El sistema pensado para crecer de una tienda a una cadena.</p>
+        <ul class="bullets">
+          <li><span class="dot"></span><span><b>Sucursales ilimitadas</b> — gestiónalas desde una sola cuenta maestra.</span></li>
+          <li><span class="dot"></span><span><b>Cajas virtualizadas</b> — una caja por turno o empleado, con apertura y cierre independiente.</span></li>
+          <li><span class="dot"></span><span><b>Mapeo de terminales</b> — cada Point Smart 2 vinculada a su caja correcta.</span></li>
+        </ul>
+      </div>
+
+      <div class="feat">
+        <span class="num">05</span>
+        <span class="ico-lg">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </span>
+        <h3>Seguridad &amp; administración</h3>
+        <p class="intro">Protege tu activo más valioso: tu información y tu dinero.</p>
+        <ul class="bullets">
+          <li><span class="dot"></span><span><b>Roles y permisos</b> — define qué puede hacer cada empleado para evitar fraudes internos.</span></li>
+          <li><span class="dot"></span><span><b>Perfil de negocio</b> — adapta recibos, impuestos y parámetros a tu marca.</span></li>
+          <li><span class="dot"></span><span><b>Auditoría completa</b> — cada movimiento queda registrado, desde alta de producto hasta cierre de caja.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTAS / FLOW -->
+<section id="ventas" class="tight">
+  <div class="wrap split">
+    <div class="copy">
+      <span class="sec-tag">02 — Ventas</span>
+      <h3>Buscas, escaneas o tocas. <span class="serif">Vendes.</span></h3>
+      <p class="body">Un catálogo rápido pensado para mostradores reales: nombres grandes, precios visibles, y un escáner siempre a un toque. Sin menús anidados. Sin entrenamiento.</p>
+      <ul class="checklist">
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Búsqueda por nombre o SKU</b> con resultados al teclear.</span></li>
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Escáner QR y código de barras</b> integrado a la cámara.</span></li>
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Carrito con cantidades</b> en un bottom-sheet rápido.</span></li>
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Descuento de stock automático</b> al finalizar la venta.</span></li>
+      </ul>
+    </div>
+
+    <div class="phones-pair">
+      <div class="phone-mini pa">
+        <div class="notch"></div>
+        <div class="screen"><img src="images/venta-directa.png" alt="Pantalla de venta directa con catálogo y producto seleccionado" /></div>
+      </div>
+      <div class="phone-mini pb">
+        <div class="notch"></div>
+        <div class="screen"><img src="images/checkout.png" alt="Pantalla de checkout con tres métodos de pago" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAGOS -->
+<section id="pagos">
+  <div class="wrap">
+    <div class="payments-wrap">
+      <div class="pay-grid">
+        <div>
+          <span class="sec-tag">03 — Pagos</span>
+          <h2 class="sec-title" style="margin-top:12px">Cobra <span class="serif">como quieras.</span></h2>
+          <p class="sec-sub" style="margin-top:22px">Mercado Pago nativo, sin pasarelas complejas. Conecta tu cuenta personal, vincula tu terminal Point Smart 2 y empieza a cobrar — efectivo, transferencia o tarjeta — en la misma transacción.</p>
+
+          <div class="pay-methods" style="margin-top:40px">
+            <div class="method featured">
+              <span class="ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>
+              </span>
+              <div>
+                <strong>Point Smart 2</strong>
+                <span>Terminal física vinculada por Mercado Pago</span>
+              </div>
+              <span class="badge">Integración nativa</span>
+            </div>
+
+            <div class="method">
+              <span class="ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 10v.01"/><path d="M18 14v.01"/></svg>
+              </span>
+              <div>
+                <strong>Efectivo</strong>
+                <span>Registro manual con confirmación en caja</span>
+              </div>
+            </div>
+
+            <div class="method">
+              <span class="ico">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
+              </span>
+              <div>
+                <strong>Transferencia</strong>
+                <span>Cobra y registra el movimiento al instante</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pay-phone">
+          <div class="phone-mini">
+            <div class="notch"></div>
+            <div class="screen"><img src="images/mp-conectada.png" alt="Pantalla esperando pago en terminal conectada" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVENTARIO -->
+<section id="inventario">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">04 — Inventario</span>
+      <h2 class="sec-title">Stock que <span class="serif">se cuida solo.</span></h2>
+      <p class="sec-sub">Cada producto con su imagen, SKU, ubicación física y lotes. Filtros, búsqueda y un historial de movimientos que entiendes de un vistazo.</p>
+    </div>
+
+    <div class="inv-grid">
+      <div class="inv-copy">
+        <div>
+          <span class="label" style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary)">El sistema</span>
+          <h4 style="font-size:24px; letter-spacing:-.02em; margin:14px 0 14px; color:var(--ink); font-weight:600">Un producto, todo su contexto.</h4>
+          <p style="color:var(--muted); font-size:15px; line-height:1.6; margin:0">Cuando das de alta un producto guardas más que un nombre: precio, foto, descripción, categoría, código y la ubicación exacta en tu almacén. Después cada lote vive con su propio historial.</p>
+        </div>
+        <ul class="checklist" style="margin-top:36px">
+          <li><span class="ck">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span><span><b>Filtros A-Z, recientes y precio.</b></span></li>
+          <li><span class="ck">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span><span><b>Lotes con costo unitario</b> y fecha de ingreso.</span></li>
+          <li><span class="ck">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span><span><b>Ajuste manual de stock</b> con motivo.</span></li>
+        </ul>
+      </div>
+
+      <div class="inv-card">
+        <span class="label">Listado</span>
+        <h4>Catálogo agrupado</h4>
+        <p>Productos por inicial, con estado de stock y resumen de lotes.</p>
+        <div class="shot">
+          <img src="images/inventario-lista.png" alt="Listado de inventario" />
+        </div>
+      </div>
+
+      <div class="inv-card">
+        <span class="label">Alta</span>
+        <h4>Nuevo producto en 30s</h4>
+        <p>Imagen, nombre, precio, categoría, ubicación y SKU.</p>
+        <div class="shot">
+          <img src="images/nuevo-producto.png" alt="Formulario de nuevo producto" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MULTI SUCURSAL -->
+<section id="sucursales" class="tight">
+  <div class="wrap multi-grid">
+    <div class="branch-stack">
+      <div class="branch-card bc-1">
+        <span class="b-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <div>
+          <strong>Minidesk Centro</strong>
+          <span>Heladería · 12 productos</span>
+        </div>
+        <span class="tag idle">Disponible</span>
+      </div>
+      <div class="branch-card bc-2 alt">
+        <span class="b-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <div>
+          <strong>Minidesk Azcorra</strong>
+          <span>Heladería · 38 productos</span>
+        </div>
+        <span class="tag active">Activa</span>
+      </div>
+      <div class="branch-card bc-3">
+        <span class="b-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <div>
+          <strong>Punto Norte</strong>
+          <span>Café · 47 productos</span>
+        </div>
+        <span class="tag idle">Disponible</span>
+      </div>
+      <div class="branch-card bc-4 alt">
+        <span class="b-ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="3" x2="22" y2="8"/><line x1="22" y1="3" x2="17" y2="8"/><path d="M7 21v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4"/><path d="M3 21V8a2 2 0 0 1 2-2h14"/></svg>
+        </span>
+        <div>
+          <strong>+ Registrar sucursal</strong>
+          <span>Mismo usuario, otro punto de venta</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy">
+      <span class="sec-tag">05 — Multi-Sucursal</span>
+      <h3>De una tienda <span class="serif">a una cadena.</span></h3>
+      <p class="body">Crea sucursales ilimitadas desde una cuenta maestra. Asigna cajas virtuales por turno o empleado, con apertura y cierre independiente, y vincula cada Point Smart 2 a la caja que le corresponde.</p>
+      <ul class="checklist">
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Cajas virtualizadas</b> por turno o empleado.</span></li>
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Mapeo de terminales</b> Point Smart 2 a cada caja.</span></li>
+        <li><span class="ck">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span><span><b>Identidad por sucursal</b> — logo, datos fiscales, contacto.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- AUDITORÍA / SEGURIDAD -->
+<section id="seguridad" class="tight">
+  <div class="wrap">
+    <div class="lot-wrap">
+      <div class="lot-copy">
+        <span class="sec-tag">06 — Seguridad</span>
+        <h3 style="font-size:clamp(28px, 3vw, 40px); letter-spacing:-.02em; color:var(--primary-deep); margin:18px 0 18px; line-height:1.1; font-weight:500; max-width:14ch">Cada movimiento, <span class="serif">trazado.</span></h3>
+        <p style="font-size:16.5px; color:var(--muted); line-height:1.65; max-width:440px">Define qué puede hacer cada empleado, configura tu marca y deja que el sistema registre todo. Auditoría real sin hojas de cálculo.</p>
+
+        <ul class="checklist" style="margin-top:28px">
+          <li><span class="ck">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span><span><b>Roles y permisos</b> — cajero, gerente, administrador.</span></li>
+          <li><span class="ck">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span><span><b>Perfil de negocio</b> — recibos, impuestos y parámetros.</span></li>
+          <li><span class="ck">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span><span><b>Registros inalterables</b> — desde alta de producto hasta cierre de caja.</span></li>
+        </ul>
+      </div>
+
+      <div class="lot-visual">
+        <div class="phone-mini">
+          <div class="notch"></div>
+          <div class="screen"><img src="images/lote-detalle.png" alt="Detalle de movimientos auditables" /></div>
+        </div>
+
+        <div class="timeline">
+          <div class="ev">
+            <div style="flex:1">
+              <span class="dt">10 May · 09:14</span>
+              <strong>Apertura de caja · María R.</strong>
+            </div>
+            <span class="delta up">$0</span>
+          </div>
+          <div class="ev">
+            <div style="flex:1">
+              <span class="dt">10 May · 11:42</span>
+              <strong>Venta · Point Smart 2</strong>
+            </div>
+            <span class="delta up">+$840</span>
+          </div>
+          <div class="ev">
+            <div style="flex:1">
+              <span class="dt">10 May · 15:08</span>
+              <strong>Ajuste · merma</strong>
+            </div>
+            <span class="delta dn">−1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">07 — Preguntas</span>
+      <h2 class="sec-title">Antes de descargar.</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="faq" open>
+        <summary>¿Necesito hardware especial?</summary>
+        <p>No. Punto Fast funciona en cualquier celular Android o iOS moderno. Si quieres cobrar con tarjeta, puedes enlazar una terminal Point Smart 2 compatible vía Bluetooth.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Funciona sin internet?</summary>
+        <p>Sí. Puedes vender, escanear y registrar movimientos sin conexión. Los datos se sincronizan automáticamente cuando vuelvas a tener señal.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Cómo funciona el cobro con tarjeta?</summary>
+        <p>Punto Fast se integra de forma nativa con Mercado Pago. Conectas tu cuenta personal y vinculas la terminal Point Smart 2 — sin configurar pasarelas externas.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Puedo manejar varias tiendas?</summary>
+        <p>Sí. Una cuenta puede operar múltiples sucursales y negocios. Cada una con su propio inventario, logo, teléfono y datos fiscales.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Cómo manejan la seguridad?</summary>
+        <p>Roles y permisos por empleado (cajero, gerente, administrador), PIN y biometría en cada dispositivo, y auditoría completa: cada movimiento queda registrado con usuario, fecha y motivo.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Puedo migrar mi inventario actual?</summary>
+        <p>Sí. Importas un CSV con tus productos (nombre, precio, SKU, categoría) y Punto Fast genera el catálogo. También puedes escanear cada producto para darlo de alta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="download" class="final-cta">
+  <h2>Abre tu caja. <span class="serif">Empieza a vender.</span></h2>
+  <p>Descarga Punto Fast gratis y registra tu primer producto en menos de un minuto.</p>
+  <div class="store-row">
+    <a class="store" href="#">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.95 2.41-4.37 2.52-4.44-1.37-2-3.5-2.28-4.26-2.31-1.82-.18-3.55 1.07-4.48 1.07-.93 0-2.36-1.04-3.87-1.01-1.99.03-3.83 1.16-4.85 2.94-2.07 3.58-.53 8.88 1.49 11.79.99 1.42 2.16 3.02 3.69 2.96 1.49-.06 2.05-.96 3.85-.96 1.8 0 2.31.96 3.87.93 1.6-.03 2.61-1.45 3.59-2.88 1.13-1.65 1.6-3.25 1.62-3.33-.04-.02-3.11-1.19-3.17-4.76zM14.4 3.66c.82-.99 1.37-2.38 1.22-3.76-1.18.05-2.61.78-3.46 1.77-.76.87-1.43 2.27-1.25 3.62 1.31.1 2.66-.66 3.49-1.63z"/></svg>
+      <span>
+        <small>Descargar en</small>
+        <strong>App Store</strong>
+      </span>
+    </a>
+    <a class="store" href="#">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 1.85c-.36.38-.6.97-.6 1.74v16.82c0 .77.24 1.36.6 1.74l.07.07L13 12.96v-.21L3.67 1.78l-.07.07zM16.84 16.05l-3.11-3.1V12.05L16.84 8.95l.07.04 3.69 2.1c1.05.6 1.05 1.57 0 2.17l-3.69 2.1-.07.05zM13.73 12.95L4.43 22.25c.35.36.92.41 1.57.04l11.06-6.28-3.33-3.06zM4.43 1.75L13.73 11.05l3.33-3.06L6 1.71c-.65-.37-1.22-.32-1.57.04z"/></svg>
+      <span>
+        <small>Disponible en</small>
+        <strong>Google Play</strong>
+      </span>
+    </a>
+    <a class="btn btn-leaf btn-lg" href="#" style="margin-left:8px">
+      Ver demo guiada
+      <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#">
+          <span class="dot">P</span>
+          Punto Fast
+        </a>
+        <p>El punto de venta móvil para tiendas que se mueven. Hecho con cuidado en LATAM.</p>
+      </div>
+      <div>
+        <h5>Producto</h5>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pagos">Pagos</a></li>
+          <li><a href="#inventario">Inventario</a></li>
+          <li><a href="#sucursales">Multi-sucursal</a></li>
+          <li><a href="#seguridad">Seguridad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Soporte</h5>
+        <ul>
+          <li><a href="#">Centro de ayuda</a></li>
+          <li><a href="#">Estado del servicio</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Compañía</h5>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Prensa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Punto Fast · Hecho para LATAM</span>
+      <span>v 1.0 · Build 240510</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

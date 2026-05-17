@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Color Palette Preview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: var(--font);
+      background: #0a0a0a;
+      color: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin-top: 48px;
+      margin-bottom: 16px;
+      text-transform: capitalize;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+
+    .color-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      background: #1a1a1a;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .color-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    }
+
+    .swatch {
+      height: 90px;
+      position: relative;
+      transition: opacity 0.2s;
+    }
+
+    .swatch:hover {
+      opacity: 0.9;
+    }
+
+    .copy-tooltip {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .color-card:hover .copy-tooltip {
+      opacity: 1;
+    }
+
+    .info {
+      padding: 10px 12px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .scale {
+      font-weight: 600;
+      color: #e5e5e5;
+    }
+
+    .hex {
+      opacity: 0.6;
+      font-family: monospace;
+      font-size: 12px;
+      color: #a0a0a0;
+    }
+
+    .copied-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #22C55E;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+      animation: slideIn 0.3s ease-out;
+      z-index: 1000;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+
+    .copied-message.hide {
+      animation: slideOut 0.3s ease-in;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .color-tag {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎨 Design System – Color Palette</h1>
+  <p>Haz clic en cualquier color para copiar su valor hex</p>
+
+  <!-- PRIMARY -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#2F6B56"></div>
+    <h2 style="margin: 0;">Primary – Verde Musgo</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#EAF3F0" data-label="primary-50"><div class="swatch" style="background:#EAF3F0"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#EAF3F0</span></div></div>
+    <div class="color-card" data-color="#D5E7E0" data-label="primary-100"><div class="swatch" style="background:#D5E7E0"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#D5E7E0</span></div></div>
+    <div class="color-card" data-color="#A9CFC2" data-label="primary-200"><div class="swatch" style="background:#A9CFC2"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#A9CFC2</span></div></div>
+    <div class="color-card" data-color="#7DB7A3" data-label="primary-300"><div class="swatch" style="background:#7DB7A3"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#7DB7A3</span></div></div>
+    <div class="color-card" data-color="#4F8F77" data-label="primary-400"><div class="swatch" style="background:#4F8F77"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#4F8F77</span></div></div>
+    <div class="color-card" data-color="#2F6B56" data-label="primary-500"><div class="swatch" style="background:#2F6B56"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#2F6B56</span></div></div>
+    <div class="color-card" data-color="#235646" data-label="primary-600"><div class="swatch" style="background:#235646"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#235646</span></div></div>
+    <div class="color-card" data-color="#1A4338" data-label="primary-700"><div class="swatch" style="background:#1A4338"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#1A4338</span></div></div>
+    <div class="color-card" data-color="#102F27" data-label="primary-800"><div class="swatch" style="background:#102F27"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#102F27</span></div></div>
+    <div class="color-card" data-color="#0A3D2E" data-label="primary-900"><div class="swatch" style="background:#0A3D2E"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#0A3D2E</span></div></div>
+  </div>
+
+  <!-- SECONDARY -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#10B981"></div>
+    <h2 style="margin: 0;">Secondary – Verde Hoja</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#ECFDF5" data-label="secondary-50"><div class="swatch" style="background:#ECFDF5"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#ECFDF5</span></div></div>
+    <div class="color-card" data-color="#D1FAE5" data-label="secondary-100"><div class="swatch" style="background:#D1FAE5"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#D1FAE5</span></div></div>
+    <div class="color-card" data-color="#A7F3D0" data-label="secondary-200"><div class="swatch" style="background:#A7F3D0"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#A7F3D0</span></div></div>
+    <div class="color-card" data-color="#6EE7B7" data-label="secondary-300"><div class="swatch" style="background:#6EE7B7"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#6EE7B7</span></div></div>
+    <div class="color-card" data-color="#34D399" data-label="secondary-400"><div class="swatch" style="background:#34D399"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#34D399</span></div></div>
+    <div class="color-card" data-color="#10B981" data-label="secondary-500"><div class="swatch" style="background:#10B981"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#10B981</span></div></div>
+    <div class="color-card" data-color="#059669" data-label="secondary-600"><div class="swatch" style="background:#059669"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#059669</span></div></div>
+    <div class="color-card" data-color="#047857" data-label="secondary-700"><div class="swatch" style="background:#047857"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#047857</span></div></div>
+    <div class="color-card" data-color="#065F46" data-label="secondary-800"><div class="swatch" style="background:#065F46"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#065F46</span></div></div>
+    <div class="color-card" data-color="#064E3B" data-label="secondary-900"><div class="swatch" style="background:#064E3B"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#064E3B</span></div></div>
+  </div>
+
+  <!-- NEUTRAL -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#B5B4AA"></div>
+    <h2 style="margin: 0;">Neutral – Off-white cálido</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#FDFCF7" data-label="neutral-50"><div class="swatch" style="background:#FDFCF7"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#FDFCF7</span></div></div>
+    <div class="color-card" data-color="#FAF9F4" data-label="neutral-100"><div class="swatch" style="background:#FAF9F4"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#FAF9F4</span></div></div>
+    <div class="color-card" data-color="#F5F4EE" data-label="neutral-200"><div class="swatch" style="background:#F5F4EE"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#F5F4EE</span></div></div>
+    <div class="color-card" data-color="#E8E7E0" data-label="neutral-300"><div class="swatch" style="background:#E8E7E0"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#E8E7E0</span></div></div>
+    <div class="color-card" data-color="#D1D0C8" data-label="neutral-400"><div class="swatch" style="background:#D1D0C8"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#D1D0C8</span></div></div>
+    <div class="color-card" data-color="#B5B4AA" data-label="neutral-500"><div class="swatch" style="background:#B5B4AA"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#B5B4AA</span></div></div>
+    <div class="color-card" data-color="#8E8D84" data-label="neutral-600"><div class="swatch" style="background:#8E8D84"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#8E8D84</span></div></div>
+    <div class="color-card" data-color="#6F6E66" data-label="neutral-700"><div class="swatch" style="background:#6F6E66"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#6F6E66</span></div></div>
+    <div class="color-card" data-color="#4F4E48" data-label="neutral-800"><div class="swatch" style="background:#4F4E48"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#4F4E48</span></div></div>
+    <div class="color-card" data-color="#2F2E29" data-label="neutral-900"><div class="swatch" style="background:#2F2E29"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#2F2E29</span></div></div>
+  </div>
+
+  <!-- GRAY -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#6B7280"></div>
+    <h2 style="margin: 0;">Gray – Escala neutral</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#F9FAFB" data-label="gray-50"><div class="swatch" style="background:#F9FAFB"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#F9FAFB</span></div></div>
+    <div class="color-card" data-color="#F3F4F6" data-label="gray-100"><div class="swatch" style="background:#F3F4F6"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#F3F4F6</span></div></div>
+    <div class="color-card" data-color="#E5E7EB" data-label="gray-200"><div class="swatch" style="background:#E5E7EB"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#E5E7EB</span></div></div>
+    <div class="color-card" data-color="#D1D5DB" data-label="gray-300"><div class="swatch" style="background:#D1D5DB"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#D1D5DB</span></div></div>
+    <div class="color-card" data-color="#9CA3AF" data-label="gray-400"><div class="swatch" style="background:#9CA3AF"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#9CA3AF</span></div></div>
+    <div class="color-card" data-color="#6B7280" data-label="gray-500"><div class="swatch" style="background:#6B7280"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#6B7280</span></div></div>
+    <div class="color-card" data-color="#4B5563" data-label="gray-600"><div class="swatch" style="background:#4B5563"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#4B5563</span></div></div>
+    <div class="color-card" data-color="#374151" data-label="gray-700"><div class="swatch" style="background:#374151"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#374151</span></div></div>
+    <div class="color-card" data-color="#1F2937" data-label="gray-800"><div class="swatch" style="background:#1F2937"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#1F2937</span></div></div>
+    <div class="color-card" data-color="#111827" data-label="gray-900"><div class="swatch" style="background:#111827"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#111827</span></div></div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#22C55E"></div>
+    <h2 style="margin: 0;">Success – Verde éxito</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#F0FDF4" data-label="success-50"><div class="swatch" style="background:#F0FDF4"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#F0FDF4</span></div></div>
+    <div class="color-card" data-color="#DCFCE7" data-label="success-100"><div class="swatch" style="background:#DCFCE7"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#DCFCE7</span></div></div>
+    <div class="color-card" data-color="#BBF7D0" data-label="success-200"><div class="swatch" style="background:#BBF7D0"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#BBF7D0</span></div></div>
+    <div class="color-card" data-color="#86EFAC" data-label="success-300"><div class="swatch" style="background:#86EFAC"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#86EFAC</span></div></div>
+    <div class="color-card" data-color="#4ADE80" data-label="success-400"><div class="swatch" style="background:#4ADE80"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#4ADE80</span></div></div>
+    <div class="color-card" data-color="#22C55E" data-label="success-500"><div class="swatch" style="background:#22C55E"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#22C55E</span></div></div>
+    <div class="color-card" data-color="#16A34A" data-label="success-600"><div class="swatch" style="background:#16A34A"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#16A34A</span></div></div>
+    <div class="color-card" data-color="#15803D" data-label="success-700"><div class="swatch" style="background:#15803D"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#15803D</span></div></div>
+    <div class="color-card" data-color="#166534" data-label="success-800"><div class="swatch" style="background:#166534"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#166534</span></div></div>
+    <div class="color-card" data-color="#145231" data-label="success-900"><div class="swatch" style="background:#145231"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#145231</span></div></div>
+  </div>
+
+  <!-- INFO -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#0EA5E9"></div>
+    <h2 style="margin: 0;">Info – Azul información</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#F0F9FF" data-label="info-50"><div class="swatch" style="background:#F0F9FF"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#F0F9FF</span></div></div>
+    <div class="color-card" data-color="#E0F2FE" data-label="info-100"><div class="swatch" style="background:#E0F2FE"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#E0F2FE</span></div></div>
+    <div class="color-card" data-color="#BAE6FD" data-label="info-200"><div class="swatch" style="background:#BAE6FD"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#BAE6FD</span></div></div>
+    <div class="color-card" data-color="#7DD3FC" data-label="info-300"><div class="swatch" style="background:#7DD3FC"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#7DD3FC</span></div></div>
+    <div class="color-card" data-color="#38BDF8" data-label="info-400"><div class="swatch" style="background:#38BDF8"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#38BDF8</span></div></div>
+    <div class="color-card" data-color="#0EA5E9" data-label="info-500"><div class="swatch" style="background:#0EA5E9"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#0EA5E9</span></div></div>
+    <div class="color-card" data-color="#0284C7" data-label="info-600"><div class="swatch" style="background:#0284C7"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#0284C7</span></div></div>
+    <div class="color-card" data-color="#0369A1" data-label="info-700"><div class="swatch" style="background:#0369A1"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#0369A1</span></div></div>
+    <div class="color-card" data-color="#075985" data-label="info-800"><div class="swatch" style="background:#075985"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#075985</span></div></div>
+    <div class="color-card" data-color="#0C4A6E" data-label="info-900"><div class="swatch" style="background:#0C4A6E"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#0C4A6E</span></div></div>
+  </div>
+
+  <!-- WARNING -->
+  <div class="section-title">
+    <div class="color-tag" style="background:#F59E0B"></div>
+    <h2 style="margin: 0;">Warning – Naranja advertencia</h2>
+  </div>
+  <div class="palette">
+    <div class="color-card" data-color="#FFFBEB" data-label="warning-50"><div class="swatch" style="background:#FFFBEB"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">50</span><span class="hex">#FFFBEB</span></div></div>
+    <div class="color-card" data-color="#FEF3C7" data-label="warning-100"><div class="swatch" style="background:#FEF3C7"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">100</span><span class="hex">#FEF3C7</span></div></div>
+    <div class="color-card" data-color="#FDE68A" data-label="warning-200"><div class="swatch" style="background:#FDE68A"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">200</span><span class="hex">#FDE68A</span></div></div>
+    <div class="color-card" data-color="#FCD34D" data-label="warning-300"><div class="swatch" style="background:#FCD34D"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">300</span><span class="hex">#FCD34D</span></div></div>
+    <div class="color-card" data-color="#FBBF24" data-label="warning-400"><div class="swatch" style="background:#FBBF24"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">400</span><span class="hex">#FBBF24</span></div></div>
+    <div class="color-card" data-color="#F59E0B" data-label="warning-500"><div class="swatch" style="background:#F59E0B"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">500</span><span class="hex">#F59E0B</span></div></div>
+    <div class="color-card" data-color="#D97706" data-label="warning-600"><div class="swatch" style="background:#D97706"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">600</span><span class="hex">#D97706</span></div></div>
+    <div class="color-card" data-color="#B45309" data-label="warning-700"><div class="swatch" style="background:#B45309"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">700</span><span class="hex">#B45309</span></div></div>
+    <div class="color-card" data-color="#92400E" data-label="warning-800"><div class="swatch" style="background:#92400E"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">800</span><span class="hex">#92400E</span></div></div>
+    <div class="color-card" data-color="#78350F" data-label="warning-900"><div class="swatch" style="background:#78350F"><span class="copy-tooltip">Click para copiar</span></div><div class="info"><span class="scale">900</span><span class="hex">#78350F</span></div></div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.color-card');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const color = card.dataset.color;
+        const label = card.dataset.label;
+        
+        // Copiar al portapapeles
+        navigator.clipboard.writeText(color).then(() => {
+          showCopiedMessage(color, label);
+        });
+      });
+    });
+
+    function showCopiedMessage(color, label) {
+      const message = document.createElement('div');
+      message.className = 'copied-message';
+      message.textContent = `✓ ${label.toUpperCase()} copiado`;
+      document.body.appendChild(message);
+
+      setTimeout(() => {
+        message.classList.add('hide');
+        setTimeout(() => {
+          message.remove();
+        }, 300);
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
