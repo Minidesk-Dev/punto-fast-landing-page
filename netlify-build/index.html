@@ -67,7 +67,7 @@
     display:inline-flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:16px;
     box-shadow: inset 0 -6px 12px rgba(255,255,255,.08), 0 6px 14px -6px rgba(10,61,46,.4);
   }
-  .brand .dot::after{content:""; width:6px; height:6px; border-radius:50%; background:var(--leaf); margin-left:1px; box-shadow:0 0 0 2px rgba(16,185,129,.18)}
+  .brand .dot::after{content:none}
   .nav-links{display:flex; gap:32px; font-size:14.5px; color:var(--muted)}
   .nav-links a{color:inherit; text-decoration:none}
   .nav-links a:hover{color:var(--ink)}
@@ -454,9 +454,9 @@
   }
   @media (max-width: 720px){
     .wrap{padding:0 20px}
-    section{padding:72px 0}
+    section{padding:64px 0}
     section.tight{padding:64px 0}
-    section.hero{padding: 32px 0 72px}
+    section.hero{padding: 56px 0 64px}
     .sec-head{margin-bottom:40px; gap:12px}
     h1.display{font-size: clamp(40px, 9vw, 56px); line-height:1.05; margin:18px 0 20px}
     h1.display .serif{font-size:1.04em}
@@ -534,7 +534,7 @@
     .faq p{font-size:14px}
 
     /* final cta */
-    .final-cta{padding: 80px 20px 96px}
+    .final-cta{padding: 64px 20px 80px}
     .final-cta h2{font-size:clamp(36px, 9vw, 52px); line-height:1.06}
     .final-cta p{font-size:16px}
     .store-row{flex-direction:column; gap:10px}
@@ -568,7 +568,7 @@
 <nav class="top">
   <div class="wrap nav-inner">
     <a class="brand" href="#">
-      <span class="dot">P</span>
+      <span class="dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
       Punto Fast
     </a>
     <div class="nav-links">
@@ -580,9 +580,6 @@
     </div>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="#">Iniciar sesión</a>
-      <a class="btn btn-primary" href="#download">Descargar
-        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
     </div>
   </div>
 </nav>
@@ -601,10 +598,6 @@
       </p>
 
       <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="#download">
-          Descargar gratis
-          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
         <a class="btn btn-ghost btn-lg" href="#demo">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>
           Ver demo de 90s
@@ -1060,23 +1053,9 @@
 <!-- CTA FINAL -->
 <section id="download" class="final-cta">
   <h2>Abre tu caja. <span class="serif">Empieza a vender.</span></h2>
-  <p>Descarga Punto Fast gratis y registra tu primer producto en menos de un minuto.</p>
+  <p>Empieza gratis y registra tu primer producto en menos de un minuto.</p>
   <div class="store-row">
-    <a class="store" href="#">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.04c-.03-2.95 2.41-4.37 2.52-4.44-1.37-2-3.5-2.28-4.26-2.31-1.82-.18-3.55 1.07-4.48 1.07-.93 0-2.36-1.04-3.87-1.01-1.99.03-3.83 1.16-4.85 2.94-2.07 3.58-.53 8.88 1.49 11.79.99 1.42 2.16 3.02 3.69 2.96 1.49-.06 2.05-.96 3.85-.96 1.8 0 2.31.96 3.87.93 1.6-.03 2.61-1.45 3.59-2.88 1.13-1.65 1.6-3.25 1.62-3.33-.04-.02-3.11-1.19-3.17-4.76zM14.4 3.66c.82-.99 1.37-2.38 1.22-3.76-1.18.05-2.61.78-3.46 1.77-.76.87-1.43 2.27-1.25 3.62 1.31.1 2.66-.66 3.49-1.63z"/></svg>
-      <span>
-        <small>Descargar en</small>
-        <strong>App Store</strong>
-      </span>
-    </a>
-    <a class="store" href="#">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 1.85c-.36.38-.6.97-.6 1.74v16.82c0 .77.24 1.36.6 1.74l.07.07L13 12.96v-.21L3.67 1.78l-.07.07zM16.84 16.05l-3.11-3.1V12.05L16.84 8.95l.07.04 3.69 2.1c1.05.6 1.05 1.57 0 2.17l-3.69 2.1-.07.05zM13.73 12.95L4.43 22.25c.35.36.92.41 1.57.04l11.06-6.28-3.33-3.06zM4.43 1.75L13.73 11.05l3.33-3.06L6 1.71c-.65-.37-1.22-.32-1.57.04z"/></svg>
-      <span>
-        <small>Disponible en</small>
-        <strong>Google Play</strong>
-      </span>
-    </a>
-    <a class="btn btn-leaf btn-lg" href="#" style="margin-left:8px">
+    <a class="btn btn-leaf btn-lg" href="#">
       Ver demo guiada
       <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
@@ -1089,7 +1068,7 @@
     <div class="foot">
       <div>
         <a class="brand" href="#">
-          <span class="dot">P</span>
+          <span class="dot"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
           Punto Fast
         </a>
         <p>El punto de venta móvil para tiendas que se mueven. Hecho con cuidado en LATAM.</p>
