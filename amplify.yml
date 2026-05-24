@@ -2,10 +2,9 @@ version: 1
 frontend:
   phases:
     build:
-      commands: []
+      commands:
+        - echo "Static site"
   artifacts:
     baseDirectory: netlify-build
     files:
       - '**/*'
-  cache:
-    paths: []
