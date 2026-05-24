@@ -333,9 +333,10 @@
     position:absolute; background:#fff; border:1px solid var(--line); border-radius:20px;
     padding:18px 20px; display:flex; align-items:center; gap:16px;
     box-shadow:var(--shadow-md); width:340px;
-    text-decoration:none; color:inherit; cursor:pointer;
   }
-  a.branch-card:hover{border-color:var(--primary); box-shadow:var(--shadow-lg)}
+  .powered-by{display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:var(--muted-2)}
+  .powered-by img{height:18px; width:auto; opacity:0.65}
+  .powered-by:hover img{opacity:1}
   .branch-card .b-ico{
     width:46px; height:46px; border-radius:12px; flex:none;
     background:var(--primary-deep); color:#fff;
@@ -896,26 +897,26 @@
 <section id="sucursales" class="tight">
   <div class="wrap multi-grid">
     <div class="branch-stack">
-      <a class="branch-card bc-1" href="https://minideskdev.com" target="_blank" rel="noopener noreferrer">
+      <div class="branch-card bc-1">
         <span class="b-ico">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </span>
         <div>
-          <strong>Minidesk Centro</strong>
+          <strong>La granjita</strong>
           <span>Heladería · 12 productos</span>
         </div>
         <span class="tag idle">Disponible</span>
-      </a>
-      <a class="branch-card bc-2 alt" href="https://minideskdev.com" target="_blank" rel="noopener noreferrer">
+      </div>
+      <div class="branch-card bc-2 alt">
         <span class="b-ico">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </span>
         <div>
-          <strong>Minidesk Azcorra</strong>
+          <strong>El depósito</strong>
           <span>Heladería · 38 productos</span>
         </div>
         <span class="tag active">Activa</span>
-      </a>
+      </div>
       <div class="branch-card bc-3">
         <span class="b-ico">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -1068,7 +1069,7 @@
           <img src="images/logo.svg" alt="Punto Fast" class="brand-logo" />
           Punto Fast
         </a>
-        <p>El punto de venta móvil para tiendas que se mueven. Hecho con cuidado en LATAM.</p>
+        <p>El punto de venta móvil para tiendas que se mueven. Hecho con cuidado en LATAM por <a href="https://minideskdev.com" target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration:none; font-weight:500">MiniDesk Dev</a>.</p>
       </div>
       <div>
         <h5>Producto</h5>
@@ -1101,7 +1102,10 @@
     </div>
     <div class="foot-bottom">
       <span>© 2026 Punto Fast · Hecho para LATAM</span>
-      <span>v 1.0 · Build 240510</span>
+      <a class="powered-by" href="https://minideskdev.com" target="_blank" rel="noopener noreferrer">
+        <span>Powered by</span>
+        <img src="images/minidesk-logo.png" alt="MiniDesk Dev" />
+      </a>
     </div>
   </div>
 </footer>
