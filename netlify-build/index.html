@@ -6,6 +6,8 @@
 <title>Punto Fast — Tu punto de venta en el bolsillo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
@@ -270,6 +272,17 @@
     border-radius:50%; background: radial-gradient(circle, rgba(125,183,163,.18), transparent 70%);
   }
   .pay-grid{display:grid; grid-template-columns: 1fr 1.05fr; gap:60px; align-items:center; position:relative; z-index:1}
+  .cert-bar{display:flex; align-items:center; gap:12px; margin-top:36px; padding-top:24px; border-top:1px solid rgba(234,243,240,.15); position:relative; z-index:1; flex-wrap:wrap}
+  .cert-label{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:rgba(234,243,240,.45); width:100%; margin-bottom:2px}
+  .cert-chip{background:rgba(255,255,255,.97); border-radius:10px; padding:8px 14px; display:inline-flex; align-items:center}
+  .cert-chip img{height:22px; width:auto; display:block}
+  .cert-chip.badge img{height:46px}
+  .trust-row{display:flex; align-items:center; gap:20px; padding:20px 0; border-top:1px solid var(--line); margin-top:28px; flex-wrap:wrap}
+  .trust-label{font-size:11px; color:var(--muted-2); font-family:"JetBrains Mono",monospace; letter-spacing:.06em; text-transform:uppercase}
+  .trust-chip{display:inline-flex; align-items:center; opacity:.7; transition:opacity .2s}
+  .trust-chip:hover{opacity:1}
+  .trust-chip img{height:20px; width:auto; display:block}
+  .trust-chip.badge img{height:40px}
   .payments-wrap h2.sec-title{color:#fff}
   .payments-wrap h2.sec-title .serif{color:#A9CFC2}
   .payments-wrap .sec-tag{color:#A9CFC2}
@@ -839,6 +852,15 @@
           </div>
         </div>
       </div>
+      <div class="cert-bar">
+        <span class="cert-label">Certificaciones &amp; Pagos</span>
+        <div class="cert-chip">
+          <img src="images/mp-logo.svg" alt="Mercado Pago" />
+        </div>
+        <div class="cert-chip badge">
+          <img src="images/mp-insignia.svg" alt="Certificado Checkout Pro por Mercado Pago" />
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1099,6 +1121,15 @@
           <li><a href="#">Prensa</a></li>
         </ul>
       </div>
+    </div>
+    <div class="trust-row">
+      <span class="trust-label">Pagos con</span>
+      <a class="trust-chip" href="https://www.mercadopago.com.mx" target="_blank" rel="noopener noreferrer">
+        <img src="images/mp-logo.svg" alt="Mercado Pago" />
+      </a>
+      <a class="trust-chip badge" href="https://www.mercadopago.com.mx" target="_blank" rel="noopener noreferrer">
+        <img src="images/mp-insignia.svg" alt="Certificado Checkout Pro" />
+      </a>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Punto Fast · Hecho para LATAM</span>
